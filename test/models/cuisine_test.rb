@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CousineTest < ActiveSupport::TestCase
+class CuisineTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -1,6 +1,6 @@
-class CreateCousines < ActiveRecord::Migration
+class CreateCuisines < ActiveRecord::Migration
   def change
-    create_table :cousines do |t|
+    create_table :cuisines do |t|
       t.string :name
 
       t.timestamps null: false
