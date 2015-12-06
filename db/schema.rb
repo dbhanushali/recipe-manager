@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151206151002) do
+ActiveRecord::Schema.define(version: 20151206151711) do
 
   create_table "cousines", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -37,4 +37,24 @@ ActiveRecord::Schema.define(version: 20151206151002) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "recipes", force: :cascade do |t|
+    t.string   "title",              limit: 255
+    t.string   "cooking_time",       limit: 255
+    t.string   "difficulty_level",   limit: 255
+    t.integer  "food_type_id",       limit: 4
+    t.integer  "food_preference_id", limit: 4
+    t.integer  "cuisine_id",         limit: 4
+    t.text     "ingredients",        limit: 65535
+    t.text     "procedure",          limit: 65535
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "recipes", ["cuisine_id"], name: "index_recipes_on_cuisine_id", using: :btree
+  add_index "recipes", ["food_preference_id"], name: "index_recipes_on_food_preference_id", using: :btree
+  add_index "recipes", ["food_type_id"], name: "index_recipes_on_food_type_id", using: :btree
+
+  add_foreign_key "recipes", "cuisines"
+  add_foreign_key "recipes", "food_preferences"
+  add_foreign_key "recipes", "food_types"
 end

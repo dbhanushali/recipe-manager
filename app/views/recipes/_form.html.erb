@@ -1,0 +1,50 @@
+<%= form_for(@recipe) do |f| %>
+  <% if @recipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+      <ul>
+      <% @recipe.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset>
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, placeholder: 'title', class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :cooking_time %>
+      <%= f.number_field :cooking_time, class: "form-control" %><span>Minutes</span>
+    </div>
+    <div class="form-group">
+      <%= f.label :difficulty_level %>
+      <%= f.select :difficulty_level, Recipe::DIFFICULTY, {}, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :food_type %>
+      <%= f.select :food_type_id, options_from_collection_for_select(FoodType.all, :id, :name), {prompt: "Please Choose"}, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :food_preference %>
+      <%= f.select :food_preference_id, options_from_collection_for_select(FoodPreference.all, :id, :name), {prompt: "Please Choose"}, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :cuisine %>
+      <%= f.select :cuisine_id, options_from_collection_for_select(Cuisine.all, :id, :name), {prompt: "Please Choose"}, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :ingredients %>
+      <%= f.text_area :ingredients, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :procedure %>
+      <%= f.text_area :procedure, class: "form-control" %>
+    </div>
+    <div class="actions">
+      <%= f.submit class: "btn btn-default" %>
+    </div>
+  </fieldset>
+<% end %>
