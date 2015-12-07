@@ -14,11 +14,12 @@ The authentication is generated using devise gem.
 
 3. bundle install
 
-4. rake db:create
+4. cp config/database.yml.example config/database.yml
 
-5. rake db:migrate
+5. rake db:create
 
-6. rake db:seed
+6. rake db:migrate
 
-7. rails server
+7. rake db:seed
 
+8. rails server
